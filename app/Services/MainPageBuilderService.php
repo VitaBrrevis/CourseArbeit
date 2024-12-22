@@ -21,6 +21,7 @@ class MainPageBuilderService
         $html = $data['html'];
         $css = $data['css'];
 
+        // Widgets
         $html = str_replace('{PRODUCT_LIST_MARKER}', "@include('components.product-list')", $html);
         $html = str_replace('{CATEGORY_LIST_MARKER}', "@include('components.category-list')", $html);
 

@@ -6,12 +6,12 @@
     <form method="GET" action="{{ route('admin.products.index') }}" class="mb-4">
         <div class="row">
             <div class="col-md-4">
-                <label for="name" class="form-label">Product title</label>
+                <label for="name" class="form-label">Title:</label>
                 <input type="text" id="name" name="name" value="{{ request('name') }}" placeholder="Search by name" class="form-control">
             </div>
             <div class="col-md-4">
-                <label for="article" class="form-label">Артикул:</label>
-                <input type="text" id="article" name="article" value="{{ request('article') }}" placeholder="Search by art" class="form-control">
+                <label for="article" class="form-label">Article:</label>
+                <input type="text" id="article" name="article" value="{{ request('article') }}" placeholder="Search by article" class="form-control">
             </div>
             <div class="col-md-4">
                 <label for="category_name" class="form-label">Category:</label>
@@ -52,14 +52,14 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ Str::limit($product->description, 50) }}</td>
                     <td>{{ $product->price }}</td>
-                    <td>{{ $product->category->name ?? 'No category' }}</td>
+                    <td>{{ $product->category->name ?? 'Без категории' }}</td>
                     <td>
                         <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-info btn-sm">View</a>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('You sure?')">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -71,6 +71,6 @@
             {{ $items->links() }}
         </div>
     @else
-        <p>There are no products</p>
+        <p>There are no products.</p>
     @endif
 @endsection

@@ -54,11 +54,6 @@
                                     <a href="{{ route('password.request') }}" class="text-decoration-none">Forgot Password?</a>
                                 </div>
                             @endif
-
-                            <!-- Create Account -->
-                            <div class="text-center mt-3">
-                                <a href="{{ route('register') }}" class="text-decoration-none">Create account</a>
-                            </div>
                         </form>
                     </div>
                 </div>

@@ -6,6 +6,7 @@
     <title>@yield('title', 'Admin panel')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ContentTools/1.6.10/content-tools.min.css">
     <style>
         html, body {
             height: 100%;
@@ -25,7 +26,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Admin panel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Change navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Switch navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="adminNavbar">
@@ -76,8 +77,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.builders.main-page') }}">
-                            <i class="fas fa-list-alt"></i> Edit live theme
+                        <a class="nav-link" href="{{ route('admin.pages.index') }}">
+                            <i class="fas fa-list-alt"></i> Pages
                         </a>
                     </li>
                 </ul>

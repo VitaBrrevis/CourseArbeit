@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mb-4">Edit an order</h1>
+    <h1 class="mb-4">Edit order</h1>
 
     <form method="POST" action="{{ route('admin.orders.update', $item->id) }}" class="row g-3">
         @csrf
@@ -9,7 +9,7 @@
 
         @if ($errors->any())
             <div class="alert alert-danger">
-                <strong>There are errors occurred:</strong>
+                <strong>Errors occurred:</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -53,7 +53,7 @@
         <div class="col-md-6">
             <label for="status" class="form-label">Status:</label>
             <select id="status" name="status" class="form-select @error('status') is-invalid @enderror">
-                <option value="">Choose the status</option>
+                <option value="">Choose status</option>
                 @foreach ($statuses as $status)
                     <option value="{{ $status }}" {{ old('status', $item->status) == $status ? 'selected' : '' }}>
                         {{ ucfirst($status) }}
@@ -66,7 +66,7 @@
         </div>
 
         <div class="col-md-6">
-            <label for="total_price" class="form-label">Total price:</label>
+            <label for="total_price" class="form-label">Total:</label>
             <input type="number" id="total_price" name="total_price" value="{{ old('total_price', $item->total_price) }}" step="0.01" required class="form-control @error('total_price') is-invalid @enderror">
             @error('total_price')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
 @endsection

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Homepage editor</title>
+    <title>Main page editor</title>
     <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@
 
     editor.BlockManager.add('product-list', {
         label: 'Products list',
-        category: 'Components',
+        category: 'Component',
         attributes: { class: 'fa fa-list' },
         content: {
             type: 'product-list',
@@ -138,7 +138,7 @@
             },
             render() {
                 this.el.innerHTML = `
-                    <div class="alert alert-warning">Categories list(preview)</div>
+                    <div class="alert alert-warning">Categories list (preview)</div>
                 `;
                 this.updateStyle();
                 return this;
@@ -182,7 +182,7 @@
                 'css': css
             },
             success: function(response) {
-                alert('Live theme updated!');
+                alert('Page is saved!');
             },
             error: function(xhr, status, error) {
                 alert('Errors occurred: ' + error);

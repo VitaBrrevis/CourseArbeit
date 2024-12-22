@@ -6,8 +6,8 @@
     <form method="GET" action="{{ route('admin.categories.index') }}" class="mb-4">
         <div class="row">
             <div class="col-md-6">
-                <label for="name" class="form-label">Category name:</label>
-                <input type="text" id="name" name="name" value="{{ request('name') }}" placeholder="Search by name" class="form-control">
+                <label for="name" class="form-label">Category title:</label>
+                <input type="text" id="name" name="name" value="{{ request('name') }}" placeholder="Search by title" class="form-control">
             </div>
             <div class="col-md-6">
                 <label for="parent_id" class="form-label">Parent category:</label>
@@ -46,8 +46,8 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
-                    <td>{{ $category->parent->name ?? 'No' }}</td>
-                    <td>{{ $category->published ? 'Yes' : 'No' }}</td>
+                    <td>{{ $category->parent->name ?? 'Нет' }}</td>
+                    <td>{{ $category->published ? 'Да' : 'Нет' }}</td>
                     <td>{{ $category->sort }}</td>
                     <td>
                         <a href="{{ route('admin.categories.show', $category->id) }}" class="btn btn-info btn-sm">View</a>

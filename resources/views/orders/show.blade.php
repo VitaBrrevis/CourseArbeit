@@ -37,7 +37,7 @@
                 <form action="{{ route('admin.orders.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wan to delete this order?')">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
 
                 <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary">Back</a>
@@ -65,7 +65,7 @@
                         @foreach($item->items as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->product->name ?? 'Item deletes' }}</td>
+                                <td>{{ $item->product->name ?? 'Товар удален' }}</td>
                                 <td>{{ $item->quantity }}</td>
                                 <td>{{ number_format($item->price, 2) }}</td>
                                 <td>{{ number_format($item->price * $item->quantity, 2) }}</td>

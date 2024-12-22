@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Auth\AuthController;
 use App\Http\Controllers\User\UserController;
@@ -16,7 +17,12 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(ProductController::class)->group(function () {
     Route::get('/products/{slug}', 'index')
         ->name('products.show');
+    Route::get('/categories/{category}', 'category')
+        ->name('categories.show');
 });
+
+Route::get('/pages/{slug}', [PageController::class, 'index'])
+    ->name('pages.show');
 
 
 Route::prefix('cart')->group(function () {

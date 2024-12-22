@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Детали аттрибута</h1>
+    <h1>Attributes</h1>
 
     <div class="mb-3">
         <strong>ID:</strong> {{ $item->id }}
     </div>
 
     <div class="mb-3">
-        <strong>Название:</strong> {{ $item->name }}
+        <strong>Title:</strong> {{ $item->name }}
     </div>
 
     <div class="mb-3">
-        <strong>Значение:</strong> {{ $item->value }}
+        <strong>Value:</strong> {{ $item->value }}
     </div>
 
 
@@ -20,7 +20,7 @@
     <form action="{{ route('admin.attributes.destroy', $item->id) }}" method="POST" style="display:inline-block;">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger" onclick="return confirm('You sure?')">Delete</button>
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
     </form>
     <a href="{{ route('admin.attributes.index') }}" class="btn btn-secondary">Back</a>
 @endsection

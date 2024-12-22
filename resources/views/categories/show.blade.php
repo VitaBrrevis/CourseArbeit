@@ -34,7 +34,7 @@
     <form action="{{ route('admin.categories.destroy', $item->id) }}" method="POST" style="display:inline-block;">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger" onclick="return confirm('You sure?')">Delete</button>
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены?')">Delete</button>
     </form>
     <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Back</a>
 @endsection

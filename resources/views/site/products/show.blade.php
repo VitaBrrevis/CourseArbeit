@@ -12,13 +12,13 @@
             <p class="text-muted">{{ $product->article }}</p>
             <p>{{ $product->description }}</p>
             <h4>{{ $product->price }}$</h4>
-            <button class="btn btn-primary add-to-cart" data-product-id="{{ $product->id }}">Add to cart</button>
+            <a href="#" class="btn btn-primary">Add to cart</a>
         </div>
 
         <div class="col-md-8">
             <ul class="nav nav-tabs" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="info-tab" data-bs-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Main information</a>
+                    <a class="nav-link active" id="info-tab" data-bs-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Main info</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="gallery-tab" data-bs-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false">Gallery</a>
@@ -45,14 +45,14 @@
                     <div class="row">
                         @foreach($product->images as $image)
                             <div class="col-md-3 mb-3">
-                                <img src="{{ $image->url }}" alt="{{ $product->name }} - Фото" class="img-fluid" />
+                                <img src="{{ $image->url }}" alt="{{ $product->name }} - Image" class="img-fluid" />
                             </div>
                         @endforeach
                     </div>
                 </div>
 
                 <div class="tab-pane fade" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
-                    <h5>Product attributes</h5>
+                    <h5>Attributes</h5>
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -73,7 +73,7 @@
 
                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                     <h5>Reviews</h5>
-                    <p>Reviews will be here soon</p>
+                    <p>Reviews will be here.</p>
                 </div>
             </div>
         </div>
@@ -83,53 +83,4 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-@endpush
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.add-to-cart').on('click', function(e) {
-                e.preventDefault();
-
-                var productId = $(this).data('product-id');
-                var quantity = 1;
-
-                $.ajax({
-                    url: '/cart/add/' + productId,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        quantity: quantity,
-                    },
-                    success: function(response) {
-                        $('.cart-count').text(response.cart_count);
-                        $('#addToCartModal').modal('show');
-                    },
-                    error: function() {
-                        alert('Error occurred. Try again later');
-                    }
-                });
-            });
-
-            $('.add-to-wishlist').on('click', function(e) {
-                e.preventDefault();
-
-                var productId = $(this).data('product-id');
-
-                $.ajax({
-                    url: '/wishlist/add/' + productId,
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                    },
-                    success: function(response) {
-                        alert('Item added to wishlist');
-                    },
-                    error: function() {
-                        alert('Error occurred. Try again later');
-                    }
-                });
-            });
-        });
-    </script>
 @endpush

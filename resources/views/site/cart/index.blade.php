@@ -1,6 +1,6 @@
 @extends('site.layout')
 
-@section('title', 'Cart')
+@section('title', 'Корзина')
 
 @section('content')
     <div class="row">
@@ -28,7 +28,7 @@
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Order</button>
+                <button type="submit" class="btn btn-primary">Checkout</button>
             </form>
         </div>
 
@@ -38,7 +38,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Photo</th>
+                        <th>Image</th>
                         <th>Title</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -59,7 +59,7 @@
                 </table>
                 <h5>Total: {{ array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart)) }}$</h5>
             @else
-                <p>Cart is empty</p>
+                <p>Your cart is empty</p>
             @endif
         </div>
     </div>

@@ -50,7 +50,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="sort" class="form-label">Sort order:</label>
+            <label for="sort" class="form-label">Sorting order:</label>
             <input type="number" id="sort" name="sort" value="{{ old('sort', $item->sort) }}" class="form-control @error('sort') is-invalid @enderror">
             @error('sort')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -69,7 +69,7 @@
             @error('image')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-            <small class="form-text text-muted">Leave blank to stay with previous image.</small>
+            <small class="form-text text-muted">Leave blank to use current image</small>
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>

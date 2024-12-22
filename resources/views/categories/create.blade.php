@@ -8,7 +8,7 @@
 
         @if ($errors->any())
             <div class="alert alert-danger">
-                <strong>There are errors occurred:</strong>
+                <strong>Errors occurred:</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -18,7 +18,7 @@
         @endif
 
         <div class="mb-3">
-            <label for="name" class="form-label">Title</label>
+            <label for="name" class="form-label">Title:</label>
             <input type="text" id="name" name="name" value="{{ old('name') }}" required class="form-control @error('name') is-invalid @enderror">
             @error('name')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -26,9 +26,9 @@
         </div>
 
         <div class="mb-3">
-            <label for="parent_id" class="form-label">Parent category</label>
+            <label for="parent_id" class="form-label">Parent category:</label>
             <select id="parent_id" name="parent_id" class="form-select @error('parent_id') is-invalid @enderror">
-                <option value="">None</option>
+                <option value="">No</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}" {{ old('parent_id') == $category->id ? 'selected' : '' }}>
                         {{ $category->name }}
@@ -49,7 +49,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="sort" class="form-label">Sorting order:</label>
+            <label for="sort" class="form-label">Sort order:</label>
             <input type="number" id="sort" name="sort" value="{{ old('sort', 0) }}" class="form-control @error('sort') is-invalid @enderror">
             @error('sort')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -64,6 +64,6 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
 @endsection

@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <label for="status" class="form-label">Status:</label>
                 <select id="status" name="status" class="form-select">
-                    <option value="All statuses"></option>
+                    <option value="">All statuses</option>
                     @foreach ($statuses as $key => $status)
                         <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : '' }}>
                             {{ ucfirst($status) }}
@@ -75,7 +75,7 @@
                         <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you wan to delete this order?')">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
                     </td>
                 </tr>

@@ -27,23 +27,40 @@
 
     <div class="row mt-4">
         <div class="col-md-3">
-            <h4>Categories</h4>
-            <ul class="list-group">
-                @foreach($categories as $category)
-                    <li class="list-group-item category-item">
-                        <a href="/categories/{{ $category->id }}" class="text-decoration-none">{{ $category->name }}</a>
-                        @if($category->children->isNotEmpty())
-                        <ul class="list-group ms-3 mt-2">
-                            @foreach($category->children as $subcategory)
-                                <li class="list-group-item">
-                                    <a href="/categories/{{ $subcategory->id }}" class="text-decoration-none">{{ $subcategory->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
+            <h4>Filters</h4>
+            <form method="GET" action="{{ route('categories.show', ['category' => $category->id]) }}">
+                <div class="mb-3">
+                    <label for="searchName" class="form-label">Search by name</label>
+                    <input type="text" id="searchName" name="name" class="form-control" placeholder="Enter the name">
+                </div>
+                <div class="mb-3">
+                    <label for="searchSku" class="form-label">Search by article</label>
+                    <input type="text" id="searchSku" name="article" class="form-control" placeholder="Enter the article">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" name="category_id" class="form-select">
+                        <option value="">All categories</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="priceRange" class="form-label">Price range</label>
+                    <input type="number" name="min_price" class="form-control mb-2" placeholder="Min">
+                    <input type="number" name="max_price" class="form-control" placeholder="Max">
+                </div>
+                <div class="mb-3">
+                    <label for="sortBy" class="form-label">Sort by</label>
+                    <select id="sortBy" name="sort" class="form-select">
+                        <option value="price_asc">Price: ascending</option>
+                        <option value="price_desc">Price: descending</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Apply</button>
+            </form>
         </div>
 
         <div class="col-md-9">

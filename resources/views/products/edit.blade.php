@@ -7,13 +7,13 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button"
                     role="tab" aria-controls="info" aria-selected="true">
-                Product info
+                Information
             </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="attributes-tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button"
                     role="tab" aria-controls="attributes" aria-selected="false">
-                Product attributes
+                Attributes
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -32,7 +32,7 @@
 
                 @if ($errors->any())
                     <div class="alert alert-danger mt-3">
-                        <strong>There are errors occurred: </strong>
+                        <strong>Errors occurred: </strong>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description:</label>
+                            <label for="description" class="form-label">Описание:</label>
                             <textarea id="description" name="description"
                                       class="form-control @error('description') is-invalid @enderror"
                                       rows="4">{{ old('description', $item->description) }}</textarea>
@@ -72,7 +72,6 @@
                         </div>
                     </div>
 
-                    <!-- Правая колонка -->
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Category:</label>
@@ -92,7 +91,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="slug" class="form-label">Slug:</label>
+                            <label for="slug" class="form-label">SLUG:</label>
                             <input type="text" id="slug" name="slug" value="{{ old('slug', $item->slug) }}"
                                    class="form-control @error('slug') is-invalid @enderror">
                             @error('slug')
@@ -122,7 +121,7 @@
                 @csrf
 
                 <div class="mb-3 mt-3">
-                    <label for="attributes" class="form-label">Choose attributes:</label>
+                    <label for="attributes" class="form-label">Choose attribute:</label>
                     <select id="attributes" name="attributes[]" multiple
                             class="form-select @error('attributes') is-invalid @enderror">
                         @foreach ($attributes as $attribute)
@@ -137,7 +136,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save attributes</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
 
             <div class="mt-5">
@@ -165,7 +164,7 @@
                                     <form
                                         action="{{ route('admin.products.updateAttributes', [$item->id, $attribute->id]) }}"
                                         method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this attribute?');">
+                                        onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

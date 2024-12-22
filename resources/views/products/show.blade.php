@@ -6,7 +6,7 @@
     <ul class="nav nav-tabs" id="productDetailTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">
-                Main information
+                Product info
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -21,11 +21,11 @@
             <div class="card mb-4 mt-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Category: {{ $item->category->name ?? 'No category' }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Category: {{ $item->category->name ?? 'Без категории' }}</h6>
                     <p class="card-text"><strong>Description:</strong> {{ $item->description }}</p>
                     <p class="card-text"><strong>Price:</strong> {{ number_format($item->price, 2) }}</p>
-                    <p class="card-text"><strong>Art:</strong> {{ $item->article }}</p>
-                    <p class="card-text"><strong>SKU:</strong> {{ $item->slug }}</p>
+                    <p class="card-text"><strong>Article:</strong> {{ $item->article }}</p>
+                    <p class="card-text"><strong>SLUG:</strong> {{ $item->slug }}</p>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                 <form action="{{ route('admin.products.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
 
                 <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Back</a>
