@@ -1,7 +1,9 @@
+
 services:
   - name: seahorse-app
     image:
-      registry: registry.digitalocean.com
+      registry_type: DOCR
+      registry: registry
       repository: ${{ secrets.DOCR_NAMESPACE }}/laravel-app
       tag: latest
 
