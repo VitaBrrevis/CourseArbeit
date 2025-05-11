@@ -3,7 +3,7 @@ name: Build and Deploy to DigitalOcean
 on:
   push:
     branches:
-      - main
+      - DevOps2025
 
 jobs:
   build-and-push:
