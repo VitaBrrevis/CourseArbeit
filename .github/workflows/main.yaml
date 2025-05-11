@@ -35,7 +35,8 @@ jobs:
 
     steps:
       - name: Deploy to DigitalOcean
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          args: apps update ${{ secrets.DO_APP_ID }} --spec .do/app.yaml
+        uses: digitalocean/app_action@v2.0.9
+      with:
+        api-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        image: registry.digitalocean.com/${{ secrets.DOCR_NAMESPACE }}/laravel-app:latest
+        app-id: ${{ secrets.DO_APP_ID }}
