@@ -1,0 +1,8 @@
+FROM mysql:8.0
+
+# Custom MySQL configuration if needed
+COPY mysql/my.cnf /etc/mysql/conf.d/my.cnf
+
+# Healthcheck to verify database is working
+HEALTHCHECK --interval=30s --timeout=3s \
+    CMD mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD}
