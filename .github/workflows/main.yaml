@@ -28,9 +28,6 @@ jobs:
           push: true
           tags: registry.digitalocean.com/${{ secrets.DOCR_NAMESPACE }}/laravel-app:latest
 
-  deploy:
-    name: Deploy to DigitalOcean App Platform
-    steps:
       - name: Deploy to DigitalOcean App Platform
         uses: digitalocean/app_action/deploy@v2.0.9
         with:
