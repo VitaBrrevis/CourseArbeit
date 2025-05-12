@@ -28,13 +28,8 @@ jobs:
           push: true
           tags: registry.digitalocean.com/${{ secrets.DOCR_NAMESPACE }}/laravel-app:latest
 
-  deploy:
-    name: Deploy to DigitalOcean App Platform
-    needs: build-and-push
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to DigitalOcean
+      - name: Deploy to DigitalOcean App Platform
         uses: digitalocean/app_action/deploy@v2.0.9
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
