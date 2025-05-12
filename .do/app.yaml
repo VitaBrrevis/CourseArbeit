@@ -1,4 +1,4 @@
-name: LaravelApp
+name: laravel-app
 services:
   - name: seahorse-app
     image:
