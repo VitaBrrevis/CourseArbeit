@@ -3,7 +3,7 @@ services:
   - name: seahorse-app
     image:
       registry_type: DOCR
-      registry: ${{ secrets.DOCR_NAMESPACE }}
+      registry: vitaregistry
       repository: laravel-app
       tag: latest
 
