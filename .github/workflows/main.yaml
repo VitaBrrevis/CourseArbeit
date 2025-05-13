@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - DevOps2025
+      - main
 
 jobs:
   build-and-push:
