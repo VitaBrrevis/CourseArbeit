@@ -8,5 +8,4 @@ services:
       registry_type: DOCR
       registry: vitaregistry
       repository: laravel-app
-      tag: latest
-
+      digest: ${SAMPLE_DIGEST}
