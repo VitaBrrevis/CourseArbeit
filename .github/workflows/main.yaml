@@ -29,9 +29,18 @@ jobs:
           push: true
           tags: registry.digitalocean.com/${{ secrets.DOCR_NAMESPACE }}/laravel-app:latest
 
+      - name: Using the MAIN branch App platform config
+        if: github.ref == 'refs/heads/main'
+        run: cp .do/app-main.yaml .do/app.yaml
+
+      - name: Using DEV branch App platform config
+        if: github.ref != 'refs/heads/main'
+        run: cp .do/app-dev.yaml .do/app.yaml
+
       - name: Deploy to DigitalOcean App Platform
         uses: digitalocean/app_action/deploy@v2.0.9
         env:
           SAMPLE_DIGEST: ${{ steps.push.outputs.digest }}
+          MY_ENV_VAR: ${{ github.ref == 'refs/heads/main' && 'value_for_main_branch' || 'value_for_other_branches' }}
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

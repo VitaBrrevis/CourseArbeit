@@ -1,0 +1,12 @@
+name: seahorse-app-dev
+services:
+  - name: seahorse-app
+    http_port: 8000
+    health_check:
+      path: /
+    image:
+      registry_type: DOCR
+      registry: vitaregistry
+      repository: laravel-app
+      digest: ${SAMPLE_DIGEST}
+
