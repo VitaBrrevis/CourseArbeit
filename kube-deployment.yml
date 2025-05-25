@@ -13,13 +13,60 @@ spec:
     metadata:
       labels:
         app: laravel-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9100"
     spec:
       containers:
         - name: laravel-app
-          image: laravel-app:latest # Replace with your image name and tag
+          image: laravel-app:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+
+        - name: node-exporter
+          image: prom/node-exporter:v1.6.1
+          ports:
+            - containerPort: 9100
+              name: metrics
+          securityContext:
+            runAsUser: 0
+            privileged: true
+          volumeMounts:
+            - name: proc
+              mountPath: /host/proc
+              readOnly: true
+            - name: sys
+              mountPath: /host/sys
+              readOnly: true
+            - name: root
+              mountPath: /host/root
+              readOnly: true
+          args:
+            - --path.procfs=/host/proc
+            - --path.sysfs=/host/sys
+            - --path.rootfs=/host/root
+            - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+)($|/)
+            - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$
+
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys
+        - name: root
+          hostPath:
+            path: /
 ---
 apiVersion: v1
 kind: Service
@@ -34,3 +81,36 @@ spec:
     - port: 80
       targetPort: 8000
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: laravel-metrics
+  namespace: default
+  labels:
+    app: laravel-app
+    release: prometheus  # This might be needed to match your helm release
+spec:
+  selector:
+    app: laravel-app  # This should match your pod's labels
+  ports:
+  - name: metrics
+    port: 9100
+    targetPort: 9100
+    protocol: TCP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: laravel-app-monitor
+  namespace: default
+  labels:
+    release: prometheus  # Important: Must match your Prometheus Operator release
+spec:
+  selector:
+    matchLabels:
+      app: laravel-app  # Must match your service labels
+  endpoints:
+  - port: metrics  # Must match the port name in your service
+    interval: 15s
+    path: /metrics
